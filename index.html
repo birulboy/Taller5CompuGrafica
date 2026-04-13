@@ -14,7 +14,7 @@
 
     <!-- ======================== PUNTO 2 ======================== -->
     <h2>Punto 2 - Caja 3D</h2>
-    <canvas id="Lienzo2" width="500" height="400"></canvas>
+    <canvas id="Lienzo2" width="300" height="600"></canvas>
 
     <!-- ======================== PUNTO 3 ======================== -->
     <h2>Punto 3 - Figuras Geométricas</h2>
@@ -51,45 +51,49 @@
         const canvas2 = document.getElementById('Lienzo2');
         const ctx2 = canvas2.getContext('2d');
 
-        // primero la linea roja para guiarse, el punto del medio es donde arrancan las diagonales
-        ctx2.beginPath();
-        ctx2.moveTo(50, 280);
-        ctx2.lineTo(450, 280);
-        ctx2.strokeStyle = 'red';
-        ctx2.stroke();
-
-        ctx2.beginPath();
-        ctx2.moveTo(250, 80);
-        ctx2.lineTo(450, 180);
-        ctx2.lineTo(250, 280);
-        ctx2.lineTo(50, 180);
-        ctx2.closePath();
-        ctx2.strokeStyle = 'blue';
-        ctx2.stroke();
-
-        ctx2.beginPath();
-        ctx2.moveTo(50, 180);
-        ctx2.lineTo(50, 280);
-        ctx2.lineTo(250, 360);
-        ctx2.lineTo(250, 280);
-        ctx2.closePath();
-        ctx2.strokeStyle = 'darkgreen';
-        ctx2.stroke();
-
-        ctx2.beginPath();
-        ctx2.moveTo(250, 280);
-        ctx2.lineTo(250, 360);
-        ctx2.lineTo(450, 280);
-        ctx2.lineTo(450, 180);
-        ctx2.closePath();
-        ctx2.strokeStyle = 'darkorange';
-        ctx2.stroke();
-
-        ctx2.beginPath();
-        ctx2.moveTo(250, 80);
-        ctx2.lineTo(250, 360);
-        ctx2.strokeStyle = 'black';
-        ctx2.stroke();
+        const width = Math.floor(canvas2.width) - 1;
+        const height = Math.floor(canvas2.height) - 1;
+        
+        function DrawLine(x1, y1, x2, y2, color, lienzo){
+            lienzo.beginPath();
+            lienzo.lineWidth = 1;
+            lienzo.strokeStyle = color;
+        
+            lienzo.moveTo(Math.floor(x1), Math.floor(y1))
+            lienzo.lineTo(Math.floor(x2), Math.floor(y2))
+        
+            lienzo.stroke();
+            lienzo.closePath();
+        }
+        
+        function randomColor() {
+            let r = Math.floor(Math.random() * 256);
+            let g = Math.floor(Math.random() * 256);
+            let b = Math.floor(Math.random() * 256);
+            return "rgb(" + r + ", " + g + ", " + b + ")"
+        }
+        
+        DrawLine(0, height, width, height, "red", ctx2)
+        
+        DrawLine(0, height * 1/4, 0, height * 3/4, randomColor(), ctx2)
+        DrawLine(width / 2, height / 2, width / 2, height, randomColor(), ctx2)
+        DrawLine(width, height * 1/4, width, height * 3/4, randomColor(), ctx2)
+        
+        DrawLine(0, height * 3/4, width / 2, height, randomColor(), ctx2)
+        DrawLine(width / 2, height, width, height * 3/4, randomColor(), ctx2)
+        
+        DrawLine(0, height * 1/4, width / 2, height / 2, randomColor(), ctx2)
+        DrawLine(width / 2, height / 2, width, height * 1/4, randomColor(), ctx2)
+        
+        DrawLine(0, height * 1/4, width / 2, 0, randomColor(), ctx2)
+        DrawLine(width / 2, 0, width, height * 1/4, randomColor(), ctx2)
+        
+        DrawLine(75, height * 1/4, width / 2, 75 *1/4, randomColor(), ctx2)
+        DrawLine(width / 2, 75 * 1/4, width - 75, height * 1/4, randomColor(), ctx2)
+        DrawLine(width - 75, height * 1/4, width / 2, height / 2 - 75 * 1/4, randomColor(), ctx2)
+        DrawLine(width / 2, height / 2 - 75 * 1/4, 75, height * 1/4, randomColor(), ctx2)
+        
+        DrawLine(width / 2, 75 * 1/4, width / 2, height / 2 - 75 * 1/4, randomColor(), ctx2)
 
 
         // punto 3
